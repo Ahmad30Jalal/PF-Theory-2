@@ -1,102 +1,203 @@
-#include <stdio.h>
+#include <stdio.h> 
+#include <string.h>
+#include <math.h>
 
-void display_grid(char grid[5][5]) {
-    int i, j;
+void btd() {
+int arr[20];
+int n;    
 
-for (i < 0; i < 5; i++) {
-  for (j = 0; j < 5; j++) {
-    printf("%c ", grid[i][j]);
+int s = 0, sum = 0;
+int i, n1;
+
+printf("Enter number of bits: ");
+scanf("%d", &n);
+
+
+
+for (i = 0; i < n; i++) {
+    printf("Bit %d: ", i + 1);
+    scanf("%d", &arr[i]);
+    if (arr[i] < 0 || arr[i] > 1) {
+        printf("Enter a valid value\n");
+        i--;
     }
-  printf("\n");
-  }
+    
 }
 
-
-void move(char grid[5][5], char dir, int prow, int pcol) {
-
- int row = prow;
- int col = pcol;
- int item = 0;
-
-switch(dir) {
-
-case 'w':
-  row--;
-  break;
  
-case 'a':
-  col--;
-  break;
-
-case 's':
-  row++;
-  break;
-
-case 'd':
-  col++;
-  break;
-
-default:
-  printf("Invalid input");
-  return;
+  for (i = 0; i < n; i++) {
+    
+    if ( arr[i] == 1) {
+      sum += pow(2, i);
+      }
   }
-
-if (row < 0 || row > 4 || col < 0 || col > 4) {
-  printf("You cannot move outside of the grid");
-  }
-
-char cell = grid[row][col];
-
-if (cell == 'X') {
-  printf("You cannot move into obstacle");
-  }
-
-if (cell == 'I') {
-  printf("You collected an item");
-  item++;
-  }
-
-grid[prow][pcol] = ' ';
-grid[row][col] = 'P';
-
-prow = row;
-pcol = col;
+  printf("Binary to decimal: %d ", sum);
+  
 }
+
+void dtb() {
+    int n, i = 0, arr[32]; 
+    printf("Enter a decimal number: ");
+    scanf("%d", &n);
+
+    while (n > 0) {
+        arr[i] = n % 2; 
+        n /= 2;         
+        i++;
+    }
+
+    printf("Decimal to binary: ");
+    for (int j = i - 1; j >= 0; j--) {  
+        printf("%d", arr[j]);
+    }
+    printf("\n");
+}
+
+void htd() {
+char val[20];
+int i, n2, n1;
+int ans = 0;
+
+printf("Enter Hexadecimal number: ");
+scanf("%s", val);
+    
+  n2 = strlen(val);
+  
+    
+    for (i = 0; i < n2; i++) {
+        char n3 = val[i];
+        
+        if (n3 >= '0' && n3 <= '9') {
+            n1 = n3 - '0';
+        }
+        else if (n3 >= 'A' && n3 <= 'F') {
+            n1 = n3 - 'A' + 10;
+        }
+        else if (n3 >= 'a' && n3 <= 'f') {
+            n1 = n3 - 'a' + 10;
+        }
+        ans += n1 * pow(16, n2 - i - 1);
+    }
+    printf("%d", ans);
+}
+
+void dth() {
+int n;
+    printf("Enter a decimal number: ");
+    scanf("%d", &n);
+    printf("Hexadecimal: %X ", n);
+
+    }
+    
+void bth() {
+int arr[20];
+int n;    
+
+int s = 0, sum = 0;
+int i, n1;
+
+printf("Enter number of bits: ");
+scanf("%d", &n);
+
+
+
+for (i = 0; i < n; i++) {
+    printf("Bit %d: ", i + 1);
+    scanf("%d", &arr[i]);
+    if (arr[i] < 0 || arr[i] > 1) {
+        printf("Enter a valid value\n");
+        i--;
+    }
+    
+}
+
+ 
+  for (i = 0; i < n; i++) {
+    
+    if ( arr[i] == 1) {
+      sum += pow(2, i);
+      }
+  }
+  printf("Hexadecimal: %X ", sum);
+}
+
+void htb() {
+    
+char val[20];
+int i, n2, n1;
+int ans = 0;
+int arr [20];
+int k = 0;
+
+printf("Enter Hexadecimal number: ");
+scanf("%s", val);
+    
+  n2 = strlen(val);
+  
+    
+    for (i = 0; i < n2; i++) {
+        char n3 = val[i];
+        
+        if (n3 >= '0' && n3 <= '9') {
+            n1 = n3 - '0';
+        }
+        else if (n3 >= 'A' && n3 <= 'F') {
+            n1 = n3 - 'A' + 10;
+        }
+        else if (n3 >= 'a' && n3 <= 'f') {
+            n1 = n3 - 'a' + 10;
+        }
+        ans += n1 * pow(16, n2 - i - 1);
+    }
+
+
+    while (ans > 0) {
+        arr[k] = ans % 2; 
+        ans /= 2;         
+        k++;
+    }
+
+    printf("Hexadecimal to binary: ");
+    for (int j = k - 1; j >= 0; j--) {  
+        printf("%d", arr[j]);
+    }
+    printf("\n");
+}
+
+    
 
 
 int main() {
+    int a;
 
-int prow = 4;
-int pcol = 3;
-char n;
-int item = 0;
+printf("Enter 1 to convert binary to decimal\n2 for decimal to binary\n3 for hexadecimal to decimal\n4 for decimal to hexadecimal\n5 for binary to hexadecimal\n6 for hexadecimal to binary : ");
+scanf("%d", &a);
 
-  char grid[5][5] = {
-      {' ', ' ', 'I', 'X', ' '},
-      {' ', 'X', ' ', ' ', ' '},
-      {'I', ' ', 'X', 'X', ' '},
-      {' ', ' ', ' ', 'I', 'X'},
-      {' ', 'X', 'P', ' ', ' '}
-    };
-
-printf("Use w to move up, s to move down, a to move left, and d to move right");
-
-while(1) {
-
-  display_grid(grid);
-  printf("Items collected: %d\n", item);
-  printf("Enter your move: ");
-  scanf("%c", &n);
-
- if (n == 'q') {
-    printf("game exited");
-    break;
-    }
-
-   move(grid, n, prow, pcol);
+if (a == 1) {
+    btd();
 }
 
+if (a == 2) {
+    dtb();
+}
+
+if (a == 3) {
+    htd();
+}
+
+if (a == 4) {
+    dth();
+}
+
+if (a == 5) {
+    bth();
+}
+
+if (a == 6) {
+    htb();
+}
 return 0;
 }
+
 
 
